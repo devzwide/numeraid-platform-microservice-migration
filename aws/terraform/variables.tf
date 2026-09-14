@@ -5,6 +5,18 @@ variable "aws_region" {
   nullable    = false
 }
 
+variable "project_name" {
+  description = "Project name used for resource naming"
+  type        = string
+  default     = "numeraid"
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
+}
+
 variable "tags" {
   default = {
     Project     = "numeraid"
@@ -15,9 +27,8 @@ variable "tags" {
   type        = map(string)
 }
 
-
 variable "vpc_cidr" {
-  default     = "10.0.0.0/24"
+  default     = "10.0.0.0/16"
   description = "CIDR Block for the VPC"
   type        = string
   nullable    = false

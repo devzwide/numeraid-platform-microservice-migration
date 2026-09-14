@@ -1,16 +1,26 @@
-variable "tags" {
-  default = {
-    Project     = "numeraid"
-    Environment = "dev"
-    ManagedBy   = "Terraform"
-  }
-  description = "Tags to apply to all resources"
-  type        = map(string)
+variable "project_name" {
+  description = "Project name used for resource naming"
+  type        = string
+  default     = "numeraid"
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
 }
 
 variable "vpc_cidr" {
-  default     = "10.0.0.0/24"
-  description = "CIDR Block for the VPC"
+  description = "VPC CIDR Block"
   type        = string
-  nullable    = false
+  default     = "10.0.0.0/16"
+}
+
+variable "tags" {
+  description = "Common tags"
+  type        = map(string)
+
+  default = {
+    ManagedBy = "Terraform"
+  }
 }
