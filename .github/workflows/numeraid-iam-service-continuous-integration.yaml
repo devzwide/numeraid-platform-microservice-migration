@@ -4,12 +4,12 @@ on:
   push:
     branches: [main, development]
     paths:
-      - 'numeraid-iam-service/**'
+      - 'services/numeraid-iam-service/**'
       - '.github/workflows/numeraid-iam-service-continuous-integration.yaml'
   pull_request:
     branches: [main, development]
     paths:
-      - 'numeraid-iam-service/**'
+      - 'services/numeraid-iam-service/**'
       - '.github/workflows/numeraid-iam-service-continuous-integration.yaml'
   workflow_dispatch:
 
@@ -22,7 +22,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: ./numeraid-iam-service
+    working-directory: ./services/numeraid-iam-service
 
 jobs:
   validate:
