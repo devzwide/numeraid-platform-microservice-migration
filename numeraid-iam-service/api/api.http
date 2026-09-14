@@ -1,6 +1,86 @@
-@api_HostAddress = http://localhost:5168
+@host = https://localhost:5073
+@token = <your-access-token>
+@refreshToken = <your-refresh-token>
+@userId = <user-id>
+@emailConfirmationCode = <confirmation-code>
+@resetCode = <reset-code>
 
-GET {{api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Register
+POST {{host}}/register
+Content-Type: application/json
 
-###
+{
+  "email": "user@example.com",
+  "password": "P@ssw0rd123!"
+}
+
+### Login
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "P@ssw0rd123!"
+}
+
+### Refresh token
+POST {{host}}/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Confirm email
+GET {{host}}/confirmEmail?userId={{userId}}&code={{emailConfirmationCode}}&returnUrl=https://localhost:7042
+
+### Resend confirmation email
+POST {{host}}/resendConfirmationEmail
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+
+### Forgot password
+POST {{host}}/forgotPassword
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+
+### Reset password
+POST {{host}}/resetPassword
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "resetCode": "{{resetCode}}",
+  "newPassword": "NewP@ssw0rd456!"
+}
+
+### Manage 2FA
+POST {{host}}/manage/2fa
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "enable": true,
+  "twoFactorCode": ""
+}
+
+### Get manage info
+GET {{host}}/manage/info
+Authorization: Bearer {{token}}
+
+### Update manage info
+POST {{host}}/manage/info
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "newEmail": "updated@example.com",
+  "newPassword": "NewP@ssw0rd456!",
+  "oldPassword": "P@ssw0rd123!"
+}
