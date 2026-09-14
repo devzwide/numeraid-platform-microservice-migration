@@ -2,16 +2,21 @@ name: Numeraid Terraform - Continuous Integration
 
 on:
   push:
-    branches: [main, development]
+    branches:
+      - main
+      - development
     paths:
       - "aws/terraform/**"
       - ".github/workflows/numeraid-terraform-continuous-integration.yaml"
 
   pull_request:
-    branches: [main, development]
+    branches:
+      - main
+      - development
     paths:
       - "aws/terraform/**"
       - ".github/workflows/numeraid-terraform-continuous-integration.yaml"
+
   workflow_dispatch:
 
 permissions:
@@ -33,6 +38,7 @@ env:
 jobs:
   validate:
     name: Validate Terraform
+
     permissions:
       contents: read
       id-token: write
@@ -50,11 +56,14 @@ jobs:
           terraform_version: 1.13.3
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
-          role-session-name: github-actions
+          role-session-name: github-actions-terraform-validate
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
@@ -66,17 +75,28 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: terraform plan -input=false -no-color
 
   apply:
     name: Apply Terraform
-    needs: validate
+
+    needs:
+      - validate
+
     permissions:
       contents: read
       id-token: write
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
-    environment: development
+
+    if: >
+      github.event_name == 'push' &&
+      (
+        github.ref == 'refs/heads/main' ||
+        github.ref == 'refs/heads/development'
+      )
+
+    environment:
+      name: development
+
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -90,10 +110,14 @@ jobs:
           terraform_version: 1.13.3
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
+          role-session-name: github-actions-terraform-apply
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Terraform Init
         run: terraform init -input=false
