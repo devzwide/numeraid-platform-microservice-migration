@@ -68,6 +68,7 @@ jobs:
     name: Apply Terraform
     needs: validate
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+    environment: development
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
