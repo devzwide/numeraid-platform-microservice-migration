@@ -7,4 +7,12 @@ terraform {
       version = "~> 6.63"
     }
   }
+
+  backend "s3" {
+    bucket         = "numeraid-terraform-state-342942424673"
+    key            = "development/terraform.tfstate"
+    region         = "af-south-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
 }
