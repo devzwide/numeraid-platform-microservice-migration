@@ -33,6 +33,10 @@ env:
 jobs:
   validate:
     name: Validate Terraform
+    permissions:
+      contents: read
+      id-token: write
+
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -68,6 +72,9 @@ jobs:
   apply:
     name: Apply Terraform
     needs: validate
+    permissions:
+      contents: read
+      id-token: write
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
     environment: development
     runs-on: ubuntu-latest
