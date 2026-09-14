@@ -17,6 +17,7 @@ variable "tags" {
 
 
 variable "vpc_cidr" {
+  default     = "10.0.0.0/24"
   description = "CIDR Block for the VPC"
   type        = string
   nullable    = false
