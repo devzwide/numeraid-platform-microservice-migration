@@ -77,14 +77,14 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ github.repository_owner }}/numeraid-ui
           flavor: |
             latest=false
           tags: |
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-            type=raw,value=development,enable=${{ github.ref == 'refs/heads/development' }}
-            type=sha,format=short
-            type=ref,event=branch
+            type=raw,value=ui-latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=ui-development,enable=${{ github.ref == 'refs/heads/development' }}
+            type=sha,format=short,prefix=sha-
+            type=ref,event=branch,prefix=ui-
 
       - name: Build and push image
         uses: docker/build-push-action@v6
