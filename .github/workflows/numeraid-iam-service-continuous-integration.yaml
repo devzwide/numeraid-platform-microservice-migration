@@ -3,8 +3,14 @@ name: Numeraid IAM Service - Continuous Integration
 on:
   push:
     branches: [main, development]
+    paths:
+      - 'numeraid-iam-service/**'
+      - '.github/workflows/numeraid-iam-service-continuous-integration.yaml'
   pull_request:
     branches: [main, development]
+    paths:
+      - 'numeraid-iam-service/**'
+      - '.github/workflows/numeraid-iam-service-continuous-integration.yaml'
   workflow_dispatch:
 
 permissions:

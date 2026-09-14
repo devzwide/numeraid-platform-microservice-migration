@@ -3,8 +3,14 @@ name: Numeraid UI - Continuous Integration
 on:
   push:
     branches: [main, development]
+    paths:
+      - 'numeraid-ui/**'
+      - '.github/workflows/numeraid-ui-continuous-integration.yaml'
   pull_request:
     branches: [main, development]
+    paths:
+      - 'numeraid-ui/**'
+      - '.github/workflows/numeraid-ui-continuous-integration.yaml'
   workflow_dispatch:
 
 permissions:
