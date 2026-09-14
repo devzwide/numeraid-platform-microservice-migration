@@ -11,12 +11,14 @@ This repository is still under active development, so the workflow documentation
 [![Numeraid Terraform - Continuous Integration](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-terraform-continuous-integration.yaml/badge.svg)](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-terraform-continuous-integration.yaml)
 
 Current behavior:
+
 - runs on changes under `aws/terraform/**`
 - validates formatting, init, and plan on pull requests and pushes
 - authenticates to AWS using GitHub OIDC
 - uses a protected GitHub environment for the apply job
 
 Important:
+
 - the `apply` job is guarded by the `development` environment
 - configure manual approval and reviewers in GitHub repository settings for that environment before production-like changes are applied
 
