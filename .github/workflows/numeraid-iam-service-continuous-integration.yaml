@@ -1,0 +1,100 @@
+name: Numeraid IAM Service - Continuous Integration
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: ./numeraid-iam-service
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_NOLOGO: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore "numeraid-iam-service.slnx"
+
+      - name: Build application
+        run: dotnet build "numeraid-iam-service.slnx" --configuration Release --no-restore
+
+      - name: Publish application
+        run: dotnet publish "api/api.csproj" --configuration Release --no-build --output ./artifacts/publish
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: numeraid-iam-service-publish
+          path: numeraid-iam-service/artifacts/publish
+          if-no-files-found: error
+          retention-days: 7
+
+  docker-publish:
+    name: Build and publish Docker image
+    needs: validate
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/numeraid-iam-service
+          flavor: |
+            latest=false
+          tags: |
+            type=raw,value=iam-latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=iam-development,enable=${{ github.ref == 'refs/heads/development' }}
+            type=sha,format=short,prefix=sha-
+            type=ref,event=branch,prefix=iam-
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./numeraid-iam-service
+          file: ./numeraid-iam-service/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
