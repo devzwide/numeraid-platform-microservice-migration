@@ -2,8 +2,17 @@ import os, json
 import random
 import base64
 from io import BytesIO
-import google.generativeai as genai
-from google.generativeai import types
+try:
+    import google.generativeai as genai
+    from google.generativeai import types
+except Exception:
+    # Support alternative package names or missing package at runtime.
+    try:
+        import google_genai as genai
+        from google_genai import types
+    except Exception:
+        genai = None
+        types = None
 from .models import *
 from sqlalchemy import func
 from flask_mail import Message
@@ -18,9 +27,15 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-# Configure Gemini
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-1.0-pro")
+# Configure Gemini if available
+model = None
+if genai is not None:
+    try:
+        genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+        model = genai.GenerativeModel("gemini-1.0-pro")
+    except Exception as e:
+        print(f"Warning: could not configure GenAI model: {e}")
+        model = None
 
 
 # IMAGE GENERATION (AI + FALLBACK)
@@ -30,6 +45,9 @@ def generate_shape_image_ai(shape_type, question_data):
     """
     Use Gemini to generate an image for shapes.
     """
+    if model is None:
+        return None
+
     try:
         prompt = f"Draw a simple black outline of a {shape_type}. No background, plain white canvas."
         
@@ -187,6 +205,9 @@ def get_next_question(part, difficulty="easy", q_num=1):
             else:
                 return {"error": "Invalid test part"}
 
+            if model is None:
+                return get_fallback_question(part, difficulty, q_num)
+
             response = model.generate_content(
                 prompt,
                 generation_config=genai.types.GenerationConfig(
@@ -324,6 +345,9 @@ def ai_evaluate_answer(student_answer, correct_answer, part, question_text):
         
         Reply ONLY 'YES' if correct, 'NO' if incorrect.
         """
+        if model is None:
+            return basic_answer_similarity(student_answer, correct_answer)
+
         response = model.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
