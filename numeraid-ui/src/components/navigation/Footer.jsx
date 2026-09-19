@@ -4,10 +4,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#E8E6F0] bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+    <footer className="border-t border-[#E8E6F0] bg-white/80">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-[1.3fr_0.7fr_1fr]">
+          <div>
             <Link
               to="/"
               className="inline-flex shrink-0 items-center"
@@ -16,49 +16,52 @@ const Footer = () => {
               <img
                 src="/numeraid.png"
                 alt="Numeraid"
-                className="h-auto w-50 object-contain sm:w-55 md:w-60"
+                className="h-auto w-36 object-contain sm:w-40"
               />
             </Link>
 
-            <p className="mt-5 max-w-md text-sm leading-7 text-[#6F6C7F]">
-              Your digital companion for overcoming dyscalculia and building
-              confidence with numbers through clear, accessible, and
-              personalized learning tools.
+            <p className="mt-4 max-w-md text-sm leading-7 text-[#6F6C7F]">
+              Numeraid helps people understand numbers with calm, practical
+              support designed for everyday learning and long-term confidence.
             </p>
 
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-3">
               <a
-                href="#"
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noreferrer"
                 aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E6F0] text-sm font-semibold text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
-                <span className="text-sm font-semibold">IG</span>
+                IG
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E6F0] text-sm font-semibold text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
-                <span className="text-sm font-semibold">in</span>
+                in
               </a>
 
               <a
-                href="#"
+                href="https://x.com"
+                target="_blank"
+                rel="noreferrer"
                 aria-label="X"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E6F0] text-sm font-semibold text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
-                <span className="text-sm font-semibold">X</span>
+                X
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">
-              Product
-            </h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">Product</h3>
 
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-3">
               <li>
                 <a
                   href="/#features"
@@ -67,16 +70,14 @@ const Footer = () => {
                   Features
                 </a>
               </li>
-
               <li>
                 <a
                   href="/#about"
                   className="text-sm text-[#6F6C7F] transition-colors hover:text-[#6D4AFF]"
                 >
-                  About Numeraid
+                  About
                 </a>
               </li>
-
               <li>
                 <Link
                   to="/register"
@@ -85,7 +86,6 @@ const Footer = () => {
                   Get started
                 </Link>
               </li>
-
               <li>
                 <Link
                   to="/login"
@@ -98,30 +98,26 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">
-              Support
-            </h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">Support</h3>
 
-            <ul className="mt-5 space-y-4">
+            <ul className="mt-4 space-y-3 text-sm text-[#6F6C7F]">
               <li>
                 <a
                   href="mailto:support@numeraid.com"
-                  className="text-sm text-[#6F6C7F] transition-colors hover:text-[#6D4AFF]"
+                  className="transition-colors hover:text-[#6D4AFF]"
                 >
                   support@numeraid.com
                 </a>
               </li>
-
               <li>
                 <a
                   href="tel:+15551234567"
-                  className="text-sm text-[#6F6C7F] transition-colors hover:text-[#6D4AFF]"
+                  className="transition-colors hover:text-[#6D4AFF]"
                 >
                   +1 (555) 123-4567
                 </a>
               </li>
-
-              <li className="text-sm leading-6 text-[#6F6C7F]">
+              <li className="leading-6">
                 123 Learning Lane
                 <br />
                 Education City, SA
@@ -130,23 +126,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-[#E8E6F0] pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-[#E8E6F0] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-[#6F6C7F]">
             © {currentYear} Numeraid. All rights reserved.
           </p>
 
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="text-sm text-[#6F6C7F] transition-colors hover:text-[#6D4AFF]"
-            >
+          <div className="flex items-center gap-5 text-sm text-[#6F6C7F]">
+            <a href="#" className="transition-colors hover:text-[#6D4AFF]">
               Privacy Policy
             </a>
-
-            <a
-              href="#"
-              className="text-sm text-[#6F6C7F] transition-colors hover:text-[#6D4AFF]"
-            >
+            <a href="#" className="transition-colors hover:text-[#6D4AFF]">
               Terms of Service
             </a>
           </div>
