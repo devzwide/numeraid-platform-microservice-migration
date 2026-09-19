@@ -5,13 +5,17 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object("config.Config")
 
-    from .extensions import db, login_manager,socketio,mail
+    from .extensions import db, login_manager, socketio, mail
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
     socketio.init_app(app)
 
     from .models import Student, Staff
+
+    with app.app_context():
+        db.create_all()
+
     @login_manager.user_loader
     def load_user(user_id):
         if user_id.startswith("student-"):
@@ -21,11 +25,10 @@ def create_app():
             staff_id = int(user_id.split("-")[1])
             return Staff.query.get(staff_id)
         return None
-    
+
     from .routes import main
     app.register_blueprint(main)
-     
-    from . import sockets 
 
-    
+    from . import sockets
+
     return app
