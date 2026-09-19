@@ -27,7 +27,7 @@ const Footer = () => {
 
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/numeraid"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
@@ -37,7 +37,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/numeraid"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -47,7 +47,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://x.com"
+                href="https://x.com/numeraid"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="X"
@@ -59,7 +59,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">Product</h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">
+              Product
+            </h3>
 
             <ul className="mt-4 space-y-3">
               <li>
@@ -70,6 +72,7 @@ const Footer = () => {
                   Features
                 </a>
               </li>
+
               <li>
                 <a
                   href="/#about"
@@ -78,6 +81,7 @@ const Footer = () => {
                   About
                 </a>
               </li>
+
               <li>
                 <Link
                   to="/register"
@@ -86,6 +90,7 @@ const Footer = () => {
                   Get started
                 </Link>
               </li>
+
               <li>
                 <Link
                   to="/login"
@@ -98,29 +103,37 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">Support</h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">
+              Support
+            </h3>
 
             <ul className="mt-4 space-y-3 text-sm text-[#6F6C7F]">
               <li>
                 <a
-                  href="mailto:support@numeraid.com"
+                  href="mailto:support@numeraid.co.za"
                   className="transition-colors hover:text-[#6D4AFF]"
                 >
-                  support@numeraid.com
+                  support@numeraid.co.za
                 </a>
               </li>
+
               <li>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+27105002486"
                   className="transition-colors hover:text-[#6D4AFF]"
                 >
-                  +1 (555) 123-4567
+                  +27 10 500 2486
                 </a>
               </li>
+
               <li className="leading-6">
-                123 Learning Lane
+                18 Digital Learning Avenue
                 <br />
-                Education City, SA
+                Rosebank
+                <br />
+                Johannesburg, Gauteng 2196
+                <br />
+                South Africa
               </li>
             </ul>
           </div>
@@ -132,10 +145,17 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-5 text-sm text-[#6F6C7F]">
-            <a href="#" className="transition-colors hover:text-[#6D4AFF]">
+            <a
+              href="/privacy"
+              className="transition-colors hover:text-[#6D4AFF]"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="transition-colors hover:text-[#6D4AFF]">
+
+            <a
+              href="/terms"
+              className="transition-colors hover:text-[#6D4AFF]"
+            >
               Terms of Service
             </a>
           </div>

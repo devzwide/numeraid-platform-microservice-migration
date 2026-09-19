@@ -180,7 +180,8 @@ const HomePage = () => {
             <p>
               Dyscalculia can make numbers feel confusing even when a learner is
               capable and motivated. Numeraid is designed to remove friction and
-              make the process feel calmer, more structured, and easier to follow.
+              make the process feel calmer, more structured, and easier to
+              follow.
             </p>
 
             <p>
@@ -195,7 +196,8 @@ const HomePage = () => {
                   Built for real learning
                 </div>
                 <p className="text-sm leading-6 text-[#6F6C7F]">
-                  Support that respects different learning styles and confidence levels.
+                  Support that respects different learning styles and confidence
+                  levels.
                 </p>
               </div>
 
@@ -204,7 +206,8 @@ const HomePage = () => {
                   Practical by design
                 </div>
                 <p className="text-sm leading-6 text-[#6F6C7F]">
-                  Focused guidance that helps learners move forward with clarity.
+                  Focused guidance that helps learners move forward with
+                  clarity.
                 </p>
               </div>
             </div>
@@ -228,7 +231,8 @@ const HomePage = () => {
           </div>
 
           <p className="max-w-md text-sm leading-7 text-[#6F6C7F] sm:text-base">
-            Progress is built through understanding, repetition, and confidence — not pressure.
+            Progress is built through understanding, repetition, and confidence
+            — not pressure.
           </p>
         </div>
 
@@ -279,8 +283,8 @@ const HomePage = () => {
           </h2>
 
           <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/80 sm:text-base lg:text-lg">
-            From the first challenge to the next milestone, Numeraid gives people
-            the support they need to keep moving forward with clarity.
+            From the first challenge to the next milestone, Numeraid gives
+            people the support they need to keep moving forward with clarity.
           </p>
 
           <button
@@ -308,33 +312,35 @@ const HomePage = () => {
           </h2>
 
           <p className="mt-5 max-w-lg text-sm leading-7 text-[#6F6C7F] sm:text-base">
-            Whether you’re exploring the platform or looking for support with a
-            learning challenge, we’re ready to help you take the next step.
+            Whether you’re exploring Numeraid or looking for support, our team
+            is here to help you take the next step with confidence.
           </p>
         </div>
 
         <div className="grid gap-4">
           <a
-            href="mailto:support@numeraid.com"
+            href="mailto:support@numeraid.co.za"
             className="rounded-2xl border border-[#E8E6F0] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#6D4AFF] hover:shadow-[0_12px_28px_rgba(35,27,75,0.06)]"
           >
             <span className="mb-1 block text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#6D4AFF]">
               Email
             </span>
+
             <span className="text-base font-medium text-[#17152B]">
-              support@numeraid.com
+              support@numeraid.co.za
             </span>
           </a>
 
           <a
-            href="tel:+15551234567"
+            href="tel:+27105002486"
             className="rounded-2xl border border-[#E8E6F0] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#6D4AFF] hover:shadow-[0_12px_28px_rgba(35,27,75,0.06)]"
           >
             <span className="mb-1 block text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#6D4AFF]">
               Phone
             </span>
+
             <span className="text-base font-medium text-[#17152B]">
-              +1 (555) 123-4567
+              +27 10 500 2486
             </span>
           </a>
 
@@ -342,10 +348,15 @@ const HomePage = () => {
             <span className="mb-1 block text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#6D4AFF]">
               Address
             </span>
-            <span className="text-base font-medium text-[#17152B]">
-              123 Learning Lane
+
+            <span className="text-base font-medium leading-7 text-[#17152B]">
+              18 Digital Learning Avenue
               <br />
-              Education City, SA
+              Rosebank
+              <br />
+              Johannesburg, Gauteng 2196
+              <br />
+              South Africa
             </span>
           </address>
         </div>
