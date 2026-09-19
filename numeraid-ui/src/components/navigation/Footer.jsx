@@ -7,20 +7,17 @@ const Footer = () => {
     <footer className="border-t border-[#E8E6F0] bg-white">
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="inline-flex items-center gap-3"
+              className="inline-flex shrink-0 items-center"
               aria-label="Numeraid home"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6D4AFF] text-lg font-bold text-white">
-                N
-              </div>
-
-              <span className="text-xl font-bold tracking-tight text-[#17152B]">
-                Numeraid
-              </span>
+              <img
+                src="/numeraid.png"
+                alt="Numeraid"
+                className="h-auto w-50 object-contain sm:w-55 md:w-60"
+              />
             </Link>
 
             <p className="mt-5 max-w-md text-sm leading-7 text-[#6F6C7F]">
@@ -30,11 +27,10 @@ const Footer = () => {
             </p>
 
             <div className="mt-6 flex items-center gap-3">
-              {/* Social buttons can be connected later */}
               <a
                 href="#"
                 aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-colors hover:border-[#6D4AFF] hover:text-[#6D4AFF]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
                 <span className="text-sm font-semibold">IG</span>
               </a>
@@ -42,7 +38,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-colors hover:border-[#6D4AFF] hover:text-[#6D4AFF]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
                 <span className="text-sm font-semibold">in</span>
               </a>
@@ -50,16 +46,17 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="X"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-colors hover:border-[#6D4AFF] hover:text-[#6D4AFF]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E6F0] text-[#6F6C7F] transition-all hover:border-[#6D4AFF] hover:bg-[#F8F7FC] hover:text-[#6D4AFF]"
               >
                 <span className="text-sm font-semibold">X</span>
               </a>
             </div>
           </div>
 
-          {/* Product */}
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">Product</h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">
+              Product
+            </h3>
 
             <ul className="mt-5 space-y-3">
               <li>
@@ -100,9 +97,10 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
           <div>
-            <h3 className="text-sm font-semibold text-[#17152B]">Support</h3>
+            <h3 className="text-sm font-semibold text-[#17152B]">
+              Support
+            </h3>
 
             <ul className="mt-5 space-y-4">
               <li>
@@ -132,7 +130,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom */}
         <div className="mt-12 flex flex-col gap-4 border-t border-[#E8E6F0] pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-[#6F6C7F]">
             © {currentYear} Numeraid. All rights reserved.

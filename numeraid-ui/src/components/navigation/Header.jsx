@@ -21,28 +21,19 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-[#E8E6F0]/80 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* Logo */}
         <Link
           to="/"
           onClick={handleNavClick}
-          className="flex items-center gap-3"
+          className="flex shrink-0 items-center"
           aria-label="Numeraid home"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6D4AFF] text-lg font-bold text-white shadow-sm">
-            N
-          </div>
-
-          <div>
-            <span className="block text-xl font-bold tracking-tight text-[#17152B]">
-              Numeraid
-            </span>
-            <span className="hidden text-xs font-medium text-[#6F6C7F] sm:block">
-              Learn numbers with confidence
-            </span>
-          </div>
+          <img
+            src="/numeraid.png"
+            alt="Numeraid"
+            className="h-auto w-45 object-contain sm:w-50 md:w-55 lg:w-60"
+          />
         </Link>
 
-        {/* Desktop Navigation */}
         <nav
           className="hidden items-center gap-8 md:flex"
           aria-label="Main navigation"
@@ -62,7 +53,6 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Desktop CTA */}
         <div className="hidden items-center gap-3 md:flex">
           <Link
             to="/login"
@@ -79,7 +69,6 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -111,7 +100,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="border-t border-[#E8E6F0] bg-white md:hidden">
           <nav
