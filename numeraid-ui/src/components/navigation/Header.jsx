@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../features/auth/hooks/useAuth";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -11,11 +13,18 @@ const navLinks = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
 
   const isHome = location.pathname === "/";
 
   const handleNavClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -59,19 +68,40 @@ const Header = () => {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Link
-            to="/login"
-            className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
-          >
-            Sign in
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/account"
+                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
+              >
+                Account
+              </Link>
 
-          <Link
-            to="/register"
-            className="rounded-xl bg-[#6D4AFF] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(109,74,255,0.2)] transition-all hover:-translate-y-0.5 hover:bg-[#5135D4] hover:shadow-[0_12px_28px_rgba(109,74,255,0.26)] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
-          >
-            Get started
-          </Link>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-xl border border-[#E8E6F0] bg-white px-4 py-2.5 text-sm font-semibold text-[#17152B] transition hover:border-[#6D4AFF] hover:text-[#6D4AFF] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
+              >
+                Sign in
+              </Link>
+
+              <Link
+                to="/register"
+                className="rounded-xl bg-[#6D4AFF] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(109,74,255,0.2)] transition-all hover:-translate-y-0.5 hover:bg-[#5135D4] hover:shadow-[0_12px_28px_rgba(109,74,255,0.26)] focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2"
+              >
+                Get started
+              </Link>
+            </>
+          )}
         </div>
 
         <button
@@ -132,21 +162,43 @@ const Header = () => {
             ))}
 
             <div className="mt-3 flex flex-col gap-2 border-t border-[#E8E6F0] pt-4">
-              <Link
-                to="/login"
-                onClick={handleNavClick}
-                className="rounded-xl px-4 py-3 text-center text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC]"
-              >
-                Sign in
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    to="/account"
+                    onClick={handleNavClick}
+                    className="rounded-xl px-4 py-3 text-center text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC]"
+                  >
+                    Account
+                  </Link>
 
-              <Link
-                to="/register"
-                onClick={handleNavClick}
-                className="rounded-xl bg-[#6D4AFF] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_10px_24px_rgba(109,74,255,0.22)] transition-all hover:bg-[#5135D4]"
-              >
-                Get started
-              </Link>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="rounded-xl border border-[#E8E6F0] bg-white px-4 py-3 text-center text-sm font-semibold text-[#17152B] transition hover:border-[#6D4AFF] hover:text-[#6D4AFF]"
+                  >
+                    Sign out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    onClick={handleNavClick}
+                    className="rounded-xl px-4 py-3 text-center text-sm font-semibold text-[#17152B] transition-colors hover:bg-[#F8F7FC]"
+                  >
+                    Sign in
+                  </Link>
+
+                  <Link
+                    to="/register"
+                    onClick={handleNavClick}
+                    className="rounded-xl bg-[#6D4AFF] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_10px_24px_rgba(109,74,255,0.22)] transition-all hover:bg-[#5135D4]"
+                  >
+                    Get started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
