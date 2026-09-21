@@ -28,10 +28,10 @@ Important:
 
 Builds and publishes the IAM service container image when relevant code changes are pushed.
 
-## 3. UI
+## 3. User Interface
 
-[![Numeraid UI - Continuous Integration](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-ui-continuous-integration.yaml/badge.svg)](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-ui-continuous-integration.yaml)
+[![Numeraid User Interface - Continuous Integration](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-ui-continuous-integration.yaml/badge.svg)](https://github.com/devzwide/numeraid-platform-microservice-migration/actions/workflows/numeraid-ui-continuous-integration.yaml)
 
-Validates and publishes the React UI container image for the main and development branches.
+Validates and publishes the React user interface container image for the main and development branches.
 
 ---
