@@ -1,0 +1,32 @@
+.terraform/
+.terraformrc
+terraform.rc
+.terraform.tfstate.lock.info
+
+# Terraform state and variable files
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+
+# Plan output and local execution artifacts
+*.tfplan
+*tfplan*
+*.dot
+planout
+
+# Crash logs and override files
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local provider/cache directories if generated outside the standard .terraform path
+.terraform/plugins/
+.terraform/providers/
+.terraform/modules/
+
+# Optional: keep lockfile tracked for deterministic provider versions
+.terraform.lock.hcl
